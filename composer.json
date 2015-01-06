@@ -1,0 +1,13 @@
+{
+    "repositories": [
+        {
+            "type": "git",
+            "url": "https://github.com/pgchamberlin/static-library-experiment"
+        }
+    ],
+    "require": {
+        "pgchamberlin/static-library-experiment": "dev-master",
+        "mustache/mustache": "2.7.*",
+        "symfony/yaml": "~2.6"
+    }
+}

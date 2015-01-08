@@ -4,7 +4,7 @@
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "bbb31a4e0e88ca5daefdcf2f89ce4f31",
+    "hash": "8ca139b3c7652062bb582eea603a2e9e",
     "packages": [
         {
             "name": "mustache/mustache",
@@ -52,12 +52,12 @@
             "time": "2014-08-26 19:50:10"
         },
         {
-            "name": "pgchamberlin/static-library-experiment",
+            "name": "pgchamberlin/chintz-demo",
             "version": "dev-master",
             "source": {
                 "type": "git",
-                "url": "https://github.com/pgchamberlin/static-library-experiment",
-                "reference": "eaf6d575eadc6a59d771c13eca689d733dbf76af"
+                "url": "https://github.com/pgchamberlin/chintz-demo",
+                "reference": "4127f32f78662dc02a454e27703f1824888fa904"
             },
             "type": "library",
             "license": [
@@ -72,22 +72,22 @@
                 }
             ],
             "description": "Static bits and bobs",
-            "homepage": "https://github.com/pgchamberlin/static-library-experiment",
-            "time": "2015-01-05 21:54:47"
+            "homepage": "https://github.com/pgchamberlin/chint-demo",
+            "time": "2015-01-08 15:48:50"
         },
         {
             "name": "symfony/yaml",
-            "version": "v2.6.1",
+            "version": "v2.6.3",
             "target-dir": "Symfony/Component/Yaml",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/Yaml.git",
-                "reference": "3346fc090a3eb6b53d408db2903b241af51dcb20"
+                "reference": "82462a90848a52c2533aa6b598b107d68076b018"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/Yaml/zipball/3346fc090a3eb6b53d408db2903b241af51dcb20",
-                "reference": "3346fc090a3eb6b53d408db2903b241af51dcb20",
+                "url": "https://api.github.com/repos/symfony/Yaml/zipball/82462a90848a52c2533aa6b598b107d68076b018",
+                "reference": "82462a90848a52c2533aa6b598b107d68076b018",
                 "shasum": ""
             },
             "require": {
@@ -120,14 +120,14 @@
             ],
             "description": "Symfony Yaml Component",
             "homepage": "http://symfony.com",
-            "time": "2014-12-02 20:19:20"
+            "time": "2015-01-03 15:33:07"
         }
     ],
     "packages-dev": [],
     "aliases": [],
     "minimum-stability": "stable",
     "stability-flags": {
-        "pgchamberlin/static-library-experiment": 20
+        "pgchamberlin/chintz-demo": 20
     },
     "prefer-stable": false,
     "prefer-lowest": false,

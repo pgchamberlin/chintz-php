@@ -2,11 +2,11 @@
     "repositories": [
         {
             "type": "git",
-            "url": "https://github.com/pgchamberlin/static-library-experiment"
+            "url": "https://github.com/pgchamberlin/chintz-demo"
         }
     ],
     "require": {
-        "pgchamberlin/static-library-experiment": "dev-master",
+        "pgchamberlin/chintz-demo": "dev-master",
         "mustache/mustache": "2.7.*",
         "symfony/yaml": "~2.6"
     }

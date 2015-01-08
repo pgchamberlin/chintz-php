@@ -8,16 +8,16 @@ $compositor = new StaticLibraryCompositor();
 $compositor->prepare('elementA');
 
 $data = array(
-    'title' => 'Static Library Rendering Demo',
-    'subtitle' => 'Made up person',
+    'title' => 'Chintz Library Rendering Demo',
+    'subtitle' => 'Simple example nested items',
     'items' => array(
         array(
-            'name' => 'bobbins',
-            'occupation' => 'philosopher'
+            'name' => 'Bobbins',
+            'occupation' => 'Philosopher'
         ),
         array(
-            'name' => 'bobbinella',
-            'occupation' => 'scientist'
+            'name' => 'Bobbinella',
+            'occupation' => 'Scientist'
         )
     )
 );

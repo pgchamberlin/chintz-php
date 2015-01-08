@@ -1,21 +1,22 @@
 <?php
 
 require_once __DIR__.'/vendor/autoload.php';
-require_once __DIR__.'/StaticLibraryCompositor.php';
+require_once __DIR__.'/ChintzParser.php';
 require_once __DIR__.'/FileSystemAliasLoader.php';
 
-$compositor = new StaticLibraryCompositor();
-$compositor->prepare('elementA');
+$chintzParser = new ChintzParser();
+$chintzParser->prepare('elementA');
 
 $data = array(
     'title' => 'Chintz Library Rendering Demo',
-    'subtitle' => 'Simple example nested items',
     'items' => array(
         array(
+            'subtitle' => 'Simple example nested item',
             'name' => 'Bobbins',
             'occupation' => 'Philosopher'
         ),
         array(
+            'subtitle' => 'Another nested item',
             'name' => 'Bobbinella',
             'occupation' => 'Scientist'
         )
@@ -27,10 +28,10 @@ $data = array(
 <html>
 <head>
     <style type="text/css">
-        <?= $compositor->rawCSS() ?>
+        <?= $chintzParser->rawCSS() ?>
     </style>
 </head>
 <body>
-    <?= $compositor->render($data) ?>
+    <?= $chintzParser->render($data) ?>
 </body>
 </html>

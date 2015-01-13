@@ -1,6 +1,6 @@
 <?php
 
-class FilesystemAliasLoader extends Mustache_Loader_FilesystemLoader implements Mustache_Loader_MutableLoader
+class Chintz_Templater_Mustache_FilesystemAliasLoader extends Mustache_Loader_FilesystemLoader implements Mustache_Loader_MutableLoader
 {
     private $aliases = array();
 

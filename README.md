@@ -10,7 +10,6 @@ This is a work-in-progress implementation of the Chintz Parser specified at: htt
 Assuming you use Mustache for templates, and default handling for resolved dependencies:
 
 ```
-
 <?php
 
 $parser = Chintz_Parser(array(

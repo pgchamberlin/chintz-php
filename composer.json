@@ -1,13 +1,19 @@
 {
-    "repositories": [
+    "name": "pgchamberlin/chintz-parser-php",
+    "type": "library",
+    "description": "Chintz Parser implemented in PHP",
+    "keywords": [],
+    "homepage": "https://github.com/pgchamberlin/chintz-parser-php",
+    "license": "MIT",
+    "authors": [
         {
-            "type": "git",
-            "url": "https://github.com/pgchamberlin/chintz"
+            "name": "pgchamberlin",
+            "email": "pgchamberlin@gmail.com",
+            "homepage": "http://peterchamberlin.com",
+            "role": "Developer"
         }
     ],
-    "require": {
-        "pgchamberlin/chintz": "dev-master",
-        "mustache/mustache": "2.7.*",
-        "symfony/yaml": "~2.6"
-    }
+    "require": {},
+    "autoload": {}
 }
+

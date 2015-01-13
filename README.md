@@ -28,4 +28,4 @@ echo $parser->render('my-organism', $data);
 
 ## Is there a demo?
 
-Yes, see: [`chintz-parser-php-demo`](https://github.com/pgchamberlin/chintz-parser-php-demo), which is [hosted also](http://peterchamberlin.com/experiments/chintz-parser-php-demo/index.php).
+Yes, [see it in action](http://peterchamberlin.com/experiments/chintz-parser-php-demo/index.php) or [look at the source code](https://github.com/pgchamberlin/chintz-parser-php-demo).

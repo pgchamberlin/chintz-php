@@ -6,7 +6,7 @@
         }
     ],
     "require": {
-        "pgchamberlin/chintz-demo": "dev-master",
+        "pgchamberlin/chintz-demo": "dev-chintz-atomic",
         "mustache/mustache": "2.7.*",
         "symfony/yaml": "~2.6"
     }

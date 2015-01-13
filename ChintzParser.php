@@ -2,9 +2,11 @@
 
 use Symfony\Component\Yaml\Yaml;
 
-class StaticLibraryCompositor
+class ChintzParser
 {
-    private $staticLibraryPath = '/vendor/pgchamberlin/static-library-experiment';
+    // default is the demo library path, for the time being
+    private $chintzPath = '/vendor/pgchamberlin/chintz-demo';
+
     private $elements = array();
     private $js = array();
     private $cssPaths = array();
@@ -12,10 +14,13 @@ class StaticLibraryCompositor
     private $baseElement;
     private $baseElementTemplate;
 
-    public function __construct()
+    public function __construct($params=array())
     {
-        $this->staticLibraryRoot = dirname(__FILE__) . $this->staticLibraryPath;
-        $this->loader = new FileSystemAliasLoader($this->staticLibraryRoot);
+        if (isset($params['chintz-path'])) {
+            $this->chintzPath = $params['chintz-path'];
+        }
+        $this->staticLibraryRoot = dirname(__FILE__) . $this->chintzPath;
+        $this->loader = new FileSystemAliasLoader();
         $this->mustache = new Mustache_Engine(
             array(
                 'partials_loader' => $this->loader
@@ -30,11 +35,6 @@ class StaticLibraryCompositor
             return $this;
         }
 
-        if (empty($this->baseElement)) {
-            // base element is the first we encounter
-            $this->setBaseElement($element);
-        }
-
         $elementConfig = $this->getConfig($element);
         if (!empty($elementConfig['dependencies'])) {
             $this->resolveDependencies($elementConfig['dependencies']);
@@ -47,18 +47,19 @@ class StaticLibraryCompositor
 
     public function dumpState()
     {
-        var_dump($this->elements, $this->js, $this->css);
+        var_dump($this->elements, $this->js, $this->cssPaths);
 
         return $this;
     }
 
-    public function render($data)
+    public function render($element, $data)
     {
-        if (empty($this->baseElementTemplate)) {
+        $template = $this->getElementTemplate($element);
+        if (empty($template)) {
             // no template to render, so abort!
             return '';
         }
-        return $this->mustache->render($this->baseElementTemplate, $data);
+        return $this->mustache->render($template, $data);
     }
 
     public function rawCSS()
@@ -73,12 +74,6 @@ class StaticLibraryCompositor
         return $css;
     }
 
-    private function setBaseElement($element)
-    {
-        $this->baseElement = $element;
-        $this->baseElementTemplate = $this->getElementTemplate($element);
-    }
-
     private function setTemplate($element)
     {
         $this->loader->setTemplate($element, $this->getElementTemplatePath($element));
@@ -86,21 +81,26 @@ class StaticLibraryCompositor
 
     private function getElementTemplatePath($element)
     {
-        return "/$element/$element.mustache";
+        return $this->getChintzPath($element, "$element.mustache");
     }
 
     private function getElementTemplate($element)
     {
-        if (file_exists($this->staticLibraryRoot . $this->getElementTemplatePath($element))
-            && $template = file_get_contents($this->staticLibraryRoot . $this->getElementTemplatePath($element))) {
+        if (file_exists($this->getElementTemplatePath($element))
+            && $template = file_get_contents($this->getElementTemplatePath($element))) {
             return $template;
         }
         return '';
     }
 
+    private function getChintzPath($element, $filename)
+    {
+        return current(glob($this->staticLibraryRoot . "/*/$element/$filename"));
+    }
+
     private function getConfig($name)
     {
-        return Yaml::parse($this->staticLibraryRoot . "/$name/$name.yaml");
+        return Yaml::parse($this->getChintzPath($name, "$name.yaml"));
     }
 
     private function resolveDependencies($dependencies)

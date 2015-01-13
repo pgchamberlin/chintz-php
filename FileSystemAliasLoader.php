@@ -4,7 +4,7 @@ class FilesystemAliasLoader extends Mustache_Loader_FilesystemLoader implements 
 {
     private $aliases = array();
 
-    public function __construct($baseDir, array $aliases = array())
+    public function __construct($baseDir='/', array $aliases = array())
     {
         parent::__construct($baseDir);
         $this->setTemplates($aliases);

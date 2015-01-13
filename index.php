@@ -4,8 +4,11 @@ require_once __DIR__.'/vendor/autoload.php';
 require_once __DIR__.'/ChintzParser.php';
 require_once __DIR__.'/FileSystemAliasLoader.php';
 
+// An organism we want to render?
+$elementName = 'elementA';
+
 $chintzParser = new ChintzParser();
-$chintzParser->prepare('elementA');
+$chintzParser->prepare($elementName);
 
 $data = array(
     'title' => 'Chintz Library Rendering Demo',
@@ -32,6 +35,6 @@ $data = array(
     </style>
 </head>
 <body>
-    <?= $chintzParser->render($data) ?>
+    <?= $chintzParser->render($elementName, $data) ?>
 </body>
 </html>

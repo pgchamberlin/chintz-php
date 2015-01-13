@@ -4,25 +4,23 @@ use Symfony\Component\Yaml\Yaml;
 
 class Chintz_Parser
 {
-    // default is the demo library path, for the time being
-    private $chintzPath = '/vendor/pgchamberlin/chintz';
-
     private $elements = array();
-    private $jsPaths = array();
-    private $cssPaths = array();
+    private $dependencies = array();
+    private $dependencyHandlers = array();
+    private $templater;
 
     public function __construct($params=array())
     {
-        if (isset($params['chintz-path'])) {
-            $this->chintzPath = $params['chintz-path'];
+        if (!isset($params['chintz-base-path'])) {
+            throw new Exception('A Chintz base path is required');
         }
-        $this->staticLibraryRoot = dirname(__FILE__) . '/../..' . $this->chintzPath;
-        $this->loader = new Chintz_Templater_Mustache_FileSystemAliasLoader();
-        $this->mustache = new Mustache_Engine(
-            array(
-                'partials_loader' => $this->loader
-            )
-        );
+        $this->chintzBasePath = $params['chintz-base-path'];
+        if (isset($params['templater'])) {
+            $this->templater = $params['templater'];
+        }
+        if (is_array($params['handlers'])) {
+            $this->dependencyHandlers = $params['handlers'];
+        }
     }
     
     public function prepare($element)
@@ -42,13 +40,6 @@ class Chintz_Parser
         return $this;
     }
 
-    public function dumpState()
-    {
-        var_dump($this->elements, $this->js, $this->cssPaths);
-
-        return $this;
-    }
-
     public function render($element, $data)
     {
         $template = $this->getElementTemplate($element);
@@ -56,29 +47,25 @@ class Chintz_Parser
             // no template to render, so abort!
             return '';
         }
-        return $this->mustache->render($template, $data);
+        return $this->templater->render($template, $data);
     }
 
-    public function rawCSS()
+    public function getDependencies($name, $strategy=null)
     {
-        $css = '';
-        foreach ($this->cssPaths as $cssPath) {
-            if (file_exists($this->staticLibraryRoot . '/' . $cssPath)
-                && $styles = file_get_contents($this->staticLibraryRoot . '/' . $cssPath)) {
-                $css .= $styles;
-            }
+        if (isset($this->dependencyHandlers[$name]) && isset($this->dependencies[$name])) {
+            return $this->dependencyHandlers[$name]->format($this->dependencies[$name], $strategy);
         }
-        return $css;
+        return $this->dependencies[$name];
     }
 
     private function setTemplate($element)
     {
-        $this->loader->setTemplate($element, $this->getElementTemplatePath($element));
+        $this->templater->setTemplate($element, $this->getElementTemplatePath($element));
     }
 
     private function getElementTemplatePath($element)
     {
-        return $this->getChintzPath($element, "$element.mustache");
+        return $this->getChintzPath($element, $this->templater->getElementFilename($element));
     }
 
     private function getElementTemplate($element)
@@ -92,7 +79,7 @@ class Chintz_Parser
 
     private function getChintzPath($element, $filename)
     {
-        return current(glob($this->staticLibraryRoot . "/*/$element/$filename"));
+        return current(glob($this->chintzBasePath . "/*/$element/$filename"));
     }
 
     private function getConfig($name)
@@ -102,31 +89,33 @@ class Chintz_Parser
 
     private function resolveDependencies($dependencies)
     {
-        if (!empty($dependencies['elements'])) {
-            $this->resolveElements($dependencies['elements']);
-        }
-        if (!empty($dependencies['js'])) {
-            $this->resolveJS($dependencies['js']);
-        }
-        if (!empty($dependencies['css'])) {
-            $this->resolveCSS($dependencies['css']);
+        foreach ($dependencies as $name => $values) {
+            if ($name === 'elements') {
+                $this->resolveElementDependencies($values);
+            } else {
+                $this->resolveStaticDependencies($name, $values);
+            }
         }
     }
 
-    private function resolveElements($elements)
+    private function resolveElementDependencies($elements)
     {
         foreach ($elements as $element) {
             $this->prepare($element);
         }
     }
 
-    private function resolveJS($scripts)
+    private function resolveStaticDependencies($name, $values)
     {
-        $this->jsPaths = array_merge($this->scripts, $scripts);
-    }
-
-    private function resolveCSS($cssPaths)
-    {
-        $this->cssPaths = array_merge($this->cssPaths, $cssPaths);
+        array_walk(
+            $values,
+            function(&$value, $key, $base)
+            {
+                $value = $base . '/' . $value;
+            },
+            $this->chintzBasePath
+        );
+        $existingDeps = isset($this->dependencies[$name]) ? $this->dependencies[$name] : array();
+        $this->dependencies[$name] = array_merge($existingDeps, $values);
     }
 }

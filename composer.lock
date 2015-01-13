@@ -4,7 +4,7 @@
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "ed5d78999b15a859ac7a5159105407b2",
+    "hash": "8a3f282ae4de8760400698ed50cadc8e",
     "packages": [
         {
             "name": "mustache/mustache",
@@ -52,12 +52,12 @@
             "time": "2014-08-26 19:50:10"
         },
         {
-            "name": "pgchamberlin/chintz-demo",
-            "version": "dev-chintz-atomic",
+            "name": "pgchamberlin/chintz",
+            "version": "dev-master",
             "source": {
                 "type": "git",
-                "url": "https://github.com/pgchamberlin/chintz-demo",
-                "reference": "930ee64120aea6768edc67ecb8d8169d653c1fcb"
+                "url": "https://github.com/pgchamberlin/chintz",
+                "reference": "ca84e1945902e95fe6115009bc0cc63c821f13fa"
             },
             "type": "library",
             "license": [
@@ -72,8 +72,8 @@
                 }
             ],
             "description": "Static bits and bobs",
-            "homepage": "https://github.com/pgchamberlin/chint-demo",
-            "time": "2015-01-13 14:24:49"
+            "homepage": "https://github.com/pgchamberlin/chintz",
+            "time": "2015-01-13 15:19:50"
         },
         {
             "name": "symfony/yaml",
@@ -127,7 +127,7 @@
     "aliases": [],
     "minimum-stability": "stable",
     "stability-flags": {
-        "pgchamberlin/chintz-demo": 20
+        "pgchamberlin/chintz": 20
     },
     "prefer-stable": false,
     "prefer-lowest": false,

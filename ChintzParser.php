@@ -5,7 +5,7 @@ use Symfony\Component\Yaml\Yaml;
 class ChintzParser
 {
     // default is the demo library path, for the time being
-    private $chintzPath = '/vendor/pgchamberlin/chintz-demo';
+    private $chintzPath = '/vendor/pgchamberlin/chintz';
 
     private $elements = array();
     private $js = array();

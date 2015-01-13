@@ -2,11 +2,11 @@
     "repositories": [
         {
             "type": "git",
-            "url": "https://github.com/pgchamberlin/chintz-demo"
+            "url": "https://github.com/pgchamberlin/chintz"
         }
     ],
     "require": {
-        "pgchamberlin/chintz-demo": "dev-chintz-atomic",
+        "pgchamberlin/chintz": "dev-master",
         "mustache/mustache": "2.7.*",
         "symfony/yaml": "~2.6"
     }

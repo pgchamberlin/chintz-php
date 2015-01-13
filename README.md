@@ -1,13 +1,10 @@
 Chintz Parser PHP
 =================
 
-A PHP parser for [Chintz](https://github.com/pgchamberlin/chintz-demo#what-is-chintz) libraries.
+A PHP parser for [Chintz](https://github.com/pgchamberlin/chintz#what-is-chintz) libraries.
 
-## Getting started with the demo
+This is a work-in-progress implementation of the Chintz Parser specified at: https://github.com/pgchamberlin/chintz#chintz-parser
 
- - Clone this repo to somewhere a web server can see it
- - [Get Composer](https://getcomposer.org/download/) if you haven't already
- - Run composer install
- - Visit `index.php` in the browser
+## Is there a demo?
 
-You have now installed the demo Chintz library.
+Yes, see: [`chintz-parser-php-demo`](https://github.com/pgchamberlin/chintz-parser-php-demo), which is [hosted also](http://peterchamberlin.com/experiments/chintz-parser-php-demo/index.php).

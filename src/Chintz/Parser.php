@@ -17,7 +17,7 @@ class Chintz_Parser
             $this->chintzPath = $params['chintz-path'];
         }
         $this->staticLibraryRoot = dirname(__FILE__) . '/..' . $this->chintzPath;
-        $this->loader = new FileSystemAliasLoader();
+        $this->loader = new Chintz_Templater_Mustache_FileSystemAliasLoader();
         $this->mustache = new Mustache_Engine(
             array(
                 'partials_loader' => $this->loader

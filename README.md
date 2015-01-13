@@ -1,13 +1,29 @@
 Chintz Parser PHP
 =================
 
-A PHP parser for [Chintz](https://github.com/pgchamberlin/chintz-demo#what-is-chintz) libraries.
+A PHP parser for [Chintz](https://github.com/pgchamberlin/chintz#what-is-chintz) libraries.
 
-## Getting started with the demo
+This is a work-in-progress implementation of the Chintz Parser specified at: https://github.com/pgchamberlin/chintz#chintz-parser
 
- - Clone this repo to somewhere a web server can see it
- - [Get Composer](https://getcomposer.org/download/) if you haven't already
- - Run composer install
- - Visit `index.php` in the browser
+## Example usage
 
-You have now installed the demo Chintz library.
+Assuming you use Mustache for templates, and default handling for resolved dependencies:
+
+```php
+$parser = Chintz_Parser(array(
+  'chintz-base-path' => '/absolute/path/to/chintz/library',
+  'templater' => new Chintz_Templater_Mustache()
+));
+
+$parser->prepare('my-organism');
+
+$data = array(
+  'content' => 'This is some data our "my-organism" component knows how to display'
+);
+
+echo $parser->render('my-organism', $data);
+```
+
+## Is there a demo?
+
+Yes, [see it in action](http://peterchamberlin.com/experiments/chintz-parser-php-demo/index.php) or [look at the source code](https://github.com/pgchamberlin/chintz-parser-php-demo).

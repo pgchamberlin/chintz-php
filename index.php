@@ -1,8 +1,8 @@
 <?php
 
 require_once __DIR__.'/vendor/autoload.php';
-require_once __DIR__.'/ChintzParser.php';
-require_once __DIR__.'/FileSystemAliasLoader.php';
+require_once __DIR__.'/lib/Chintz/Parser.php';
+require_once __DIR__.'/lib/Chintz/Templater/Mustache/FileSystemAliasLoader.php';
 
 // An organism we want to render?
 $elementName = 'elementA';

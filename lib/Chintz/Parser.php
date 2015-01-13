@@ -8,18 +8,15 @@ class ChintzParser
     private $chintzPath = '/vendor/pgchamberlin/chintz';
 
     private $elements = array();
-    private $js = array();
+    private $jsPaths = array();
     private $cssPaths = array();
-    private $templatePaths;
-    private $baseElement;
-    private $baseElementTemplate;
 
     public function __construct($params=array())
     {
         if (isset($params['chintz-path'])) {
             $this->chintzPath = $params['chintz-path'];
         }
-        $this->staticLibraryRoot = dirname(__FILE__) . $this->chintzPath;
+        $this->staticLibraryRoot = dirname(__FILE__) . '/../..' . $this->chintzPath;
         $this->loader = new FileSystemAliasLoader();
         $this->mustache = new Mustache_Engine(
             array(
@@ -125,7 +122,7 @@ class ChintzParser
 
     private function resolveJS($scripts)
     {
-        $this->scripts = array_merge($this->scripts, $scripts);
+        $this->jsPaths = array_merge($this->scripts, $scripts);
     }
 
     private function resolveCSS($cssPaths)

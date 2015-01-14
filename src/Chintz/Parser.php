@@ -23,19 +23,26 @@ class Chintz_Parser
         }
     }
     
-    public function prepare($element)
+    public function prepare($elements)
     {
-        if (in_array($element, $this->elements)) {
-            // already prepared this one
+        if (!is_array($elements)) {
+            $elements = array($elements);
+        }
+
+        $unpreparedElements = array_diff($elements, array_keys($this->elements));
+        if (empty($unpreparedElements)) {
+            // already prepared them all
             return $this;
         }
 
-        $elementConfig = $this->getConfig($element);
-        if (!empty($elementConfig['dependencies'])) {
-            $this->resolveDependencies($elementConfig['dependencies']);
-        }
+        foreach ($unpreparedElements as $element) {
+            $elementConfig = $this->getConfig($element);
+            if (!empty($elementConfig['dependencies'])) {
+                $this->resolveDependencies($elementConfig['dependencies']);
+            }
 
-        $this->setTemplate($element);
+            $this->setTemplate($element);
+        }
 
         return $this;
     }

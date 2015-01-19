@@ -1,5 +1,5 @@
-Chintz Parser PHP
-=================
+Chintz PHP
+==========
 
 A PHP parser for [Chintz](https://github.com/pgchamberlin/chintz#what-is-chintz) libraries.
 

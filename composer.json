@@ -1,14 +1,14 @@
 {
-    "name": "pgchamberlin/chintz-php",
+    "name": "BBC-News/chintz-php",
     "type": "library",
     "description": "Chintz Parser implemented in PHP",
     "keywords": [],
-    "homepage": "https://github.com/pgchamberlin/chintz-php",
+    "homepage": "https://github.com/BBC-News/chintz-php",
     "license": "MIT",
     "authors": [
         {
             "name": "pgchamberlin",
-            "email": "pgchamberlin@gmail.com",
+            "email": "peter.chamberlin@bbc.co.uk",
             "homepage": "http://peterchamberlin.com",
             "role": "Developer"
         }

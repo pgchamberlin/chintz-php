@@ -1,9 +1,9 @@
 {
-    "name": "pgchamberlin/chintz-parser-php",
+    "name": "pgchamberlin/chintz-php",
     "type": "library",
     "description": "Chintz Parser implemented in PHP",
     "keywords": [],
-    "homepage": "https://github.com/pgchamberlin/chintz-parser-php",
+    "homepage": "https://github.com/pgchamberlin/chintz-php",
     "license": "MIT",
     "authors": [
         {

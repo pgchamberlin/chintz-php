@@ -41,7 +41,11 @@ class Chintz_Fixture_Parser
     private function getFixtureConfig($type)
     {
         if (!isset($this->fixtureConfigs[$type])) {
-            $this->fixtureConfigs[$type] = Yaml::parse($this->chintzBasePath . "/fixtures/$type.yaml");
+            $filepath = $this->chintzBasePath . "/fixtures/$type.yaml";
+            $data = Yaml::parse($filepath);
+            if ($data !== $filepath) {
+                $this->fixtureConfigs[$type] = Yaml::parse($this->chintzBasePath . "/fixtures/$type.yaml");
+            }
         }
         $this->generateFixtureAttributeMap($type);
         return $this->fixtureConfigs[$type];
@@ -83,6 +87,7 @@ class Chintz_Fixture_Parser
 
     private function getFixtureSet($type)
     {
+        $fixtureSet = array();
         $fixtureFiles = glob($this->chintzBasePath . "/fixtures/$type/*.yaml");
         foreach ($fixtureFiles as $file) {
             $fixture = Yaml::parse($file);

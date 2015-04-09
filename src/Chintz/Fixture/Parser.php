@@ -59,6 +59,8 @@ class Chintz_Fixture_Parser
             foreach ($attribs as $key => $value) {
                 if ($value['type'] == 'collection') {
                     $map[$key] = $value['collection_type'];
+                } elseif ($value['type'] != 'string') {
+                    $map[$key] = $value['type'];
                 }
             }
         }

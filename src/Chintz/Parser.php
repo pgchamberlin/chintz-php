@@ -86,7 +86,7 @@ class Chintz_Parser
 
     private function getChintzPath($element, $filename)
     {
-        return current(glob($this->chintzBasePath . "/*/$element/$filename"));
+        return current(glob($this->chintzBasePath . "/[amo]*/$element/$filename"));
     }
 
     private function getConfig($name)
@@ -118,7 +118,9 @@ class Chintz_Parser
             $values,
             function(&$value, $key, $base)
             {
-                $value = $base . '/' . $value;
+                if (!preg_match("/^(?:http(?:s)?:)?\/\//i", $value)) { 
+                    $value = $base . '/' . $value;
+                }
             },
             $this->chintzBasePath
         );
